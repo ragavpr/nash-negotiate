@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dbb434fbssy13"]
+
+[ext_resource type="Shader" uid="uid://bj6pbt5kvo8d3" path="res://src/Shaders/HighlightVertical.tres" id="1_ay2rw"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ay2rw")
+shader_parameter/PlayerColor = Color(0.717051, 0, 0.195874, 1)
+shader_parameter/speed = 1.0

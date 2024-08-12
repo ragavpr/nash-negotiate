@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyuipmk0xctwq"]
+
+[ext_resource type="Material" uid="uid://dbb434fbssy13" path="res://src/Materials/HighlightVerticalR.tres" id="1_heang"]
+[ext_resource type="Script" path="res://src/Debug/TestObject.gd" id="1_njni4"]
+[ext_resource type="PackedScene" uid="uid://bttq7nxxbx4o2" path="res://Assets/Blender/house_small_R.blend" id="3_k21ol"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oopv5"]
+
+[node name="Debug" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_oopv5")
+surface_material_override/0 = ExtResource("1_heang")
+script = ExtResource("1_njni4")
+
+[node name="house_small" parent="." instance=ExtResource("3_k21ol")]

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cxh7k5gafbile"]
+
+[ext_resource type="Shader" uid="uid://dvxdp2rm7qqum" path="res://src/Shaders/rough_noise_bump.tres" id="1_1ud2u"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1ud2u")
+shader_parameter/ColorParameter = Color(1, 0.944, 0.72, 1)
+shader_parameter/FloatParameter = 0.4

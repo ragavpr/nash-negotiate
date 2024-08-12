@@ -11,10 +11,21 @@ config_version=5
 [application]
 
 config/name="NashNegotiate"
+run/main_scene="res://src/Game/Game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="res://Assets/Fonts/HomeVideo-BLG6G.ttf"
+
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

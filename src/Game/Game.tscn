@@ -1,0 +1,1067 @@
+[gd_scene load_steps=31 format=3 uid="uid://sdaeongbtg0i"]
+
+[ext_resource type="Script" path="res://src/Game/Game.gd" id="1_l3b8b"]
+[ext_resource type="PackedScene" uid="uid://xmlb3rg07xdb" path="res://src/Objects/Buildings/HouseSmall.tscn" id="2_6cw2s"]
+[ext_resource type="PackedScene" uid="uid://dkg1ifvqgfxk7" path="res://src/Objects/Gaia/EarthQuake.tscn" id="3_b8i4i"]
+[ext_resource type="Material" uid="uid://8v015j1br4iu" path="res://src/Materials/noise_stripes.tres" id="3_vrjgh"]
+[ext_resource type="PackedScene" uid="uid://dc7vorh8vyr61" path="res://src/Objects/Gaia/Meteor.tscn" id="4_1e0o7"]
+[ext_resource type="Shader" uid="uid://dvxdp2rm7qqum" path="res://src/Shaders/rough_noise_bump.tres" id="4_ek5tj"]
+[ext_resource type="Shader" uid="uid://ccnjf6nagdsk1" path="res://src/Shaders/noise_stripes.tres" id="5_kwukl"]
+[ext_resource type="Texture2D" uid="uid://dgmwoqtdcwxok" path="res://Assets/Sprites/Selector.png" id="6_q4186"]
+[ext_resource type="Script" path="res://src/Game/Prompter.gd" id="9_f0mxn"]
+
+[sub_resource type="Animation" id="Animation_aep3d"]
+resource_name = "new_animation"
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.298836, -0.640856, -0.298836, 0.640856, 1, 1, -0.40051, -0.582745, -0.40051, 0.582745)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ium50"]
+_data = {
+"new_animation": SubResource("Animation_aep3d")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f62ly"]
+size = Vector2(30, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_73ewh"]
+render_priority = 0
+shader = ExtResource("4_ek5tj")
+shader_parameter/ColorParameter = Color(0, 0.233389, 0.04509, 1)
+shader_parameter/FloatParameter = 0.92
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ti73l"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_jjy0m"]
+
+[sub_resource type="Animation" id="Animation_go1tj"]
+resource_name = "fade_in_out"
+loop_mode = 2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.05, 0, 1, 1, 0, 0.15, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e6ms0"]
+_data = {
+"fade_in_out": SubResource("Animation_go1tj")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lxc1n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d2lwa"]
+render_priority = 0
+shader = ExtResource("5_kwukl")
+
+[sub_resource type="Gradient" id="Gradient_3j2g5"]
+offsets = PackedFloat32Array(0, 0.05625, 0.925, 0.9875)
+colors = PackedColorArray(1, 1, 1, 0.596078, 1, 1, 1, 0.117647, 0.768627, 0.823529, 1, 0.235294, 0.768627, 0.823529, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ywics"]
+gradient = SubResource("Gradient_3j2g5")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_s6s74"]
+colors = PackedColorArray(0.768627, 0.823529, 1, 0.376471, 0.999997, 0.276674, 0.674062, 0.376471)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mhaba"]
+gradient = SubResource("Gradient_s6s74")
+fill_from = Vector2(0, 0.147321)
+fill_to = Vector2(1, 0.75)
+
+[sub_resource type="Gradient" id="Gradient_ap46e"]
+offsets = PackedFloat32Array(0, 0.03125, 0.96875, 0.9875)
+colors = PackedColorArray(0.768627, 0.823529, 1, 0.596078, 0.768627, 0.823529, 1, 0.117647, 0.768627, 0.823529, 1, 0.235294, 0.768627, 0.823529, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oecd5"]
+gradient = SubResource("Gradient_ap46e")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e2gdl"]
+gradient = SubResource("Gradient_ap46e")
+
+[sub_resource type="Gradient" id="Gradient_fa4nr"]
+offsets = PackedFloat32Array(0, 0.03125, 0.96875, 0.9875)
+colors = PackedColorArray(1, 0.77, 0.892667, 0.596078, 1, 0.77, 0.892667, 0.117647, 1, 0.77, 0.892667, 0.235294, 1, 0.77, 0.892667, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cutte"]
+gradient = SubResource("Gradient_fa4nr")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v4c8v"]
+gradient = SubResource("Gradient_fa4nr")
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_foaeq"]
+gradient = SubResource("Gradient_s6s74")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(0, 0)
+
+[node name="Game" type="Node"]
+script = ExtResource("1_l3b8b")
+instantiate = ExtResource("2_6cw2s")
+calamity0 = ExtResource("3_b8i4i")
+calamity1 = ExtResource("4_1e0o7")
+
+[node name="SelfTimer" type="Timer" parent="."]
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.93358, -0.358367, 0, 0.358367, 0.93358, 1, 4.08081e-08, -1.56647e-08, -0.5, 4, 2.5)
+rotation_edit_mode = 1
+near = 1.0
+far = 20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
+libraries = {
+"": SubResource("AnimationLibrary_ium50")
+}
+autoplay = "new_animation"
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="FloorMeshG" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.51082, -0.236326, 2.49917)
+mesh = SubResource("PlaneMesh_f62ly")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_73ewh")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 2.51082, 0.00911975, 2.49917)
+mesh = SubResource("PlaneMesh_ti73l")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_vrjgh")
+
+[node name="Area3D" type="Area3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+shape = SubResource("WorldBoundaryShape3D_jjy0m")
+
+[node name="Selector" type="Node3D" parent="Floor"]
+visible = false
+
+[node name="Sprite" type="Sprite3D" parent="Floor/Selector"]
+transform = Transform3D(-3.27835e-08, 0.75, -3.27835e-08, 0, -3.27835e-08, -0.75, -0.75, -3.27835e-08, 1.43301e-15, 0, 0.05, 0)
+sorting_offset = 5.0
+texture = ExtResource("6_q4186")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Floor/Selector/Sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_e6ms0")
+}
+autoplay = "fade_in_out"
+speed_scale = 0.25
+
+[node name="TerritoryHint" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(3, 0, -2.50556e-22, 0, 3, -4.23516e-22, -2.50556e-22, 0, 3, 2.5, 0.0586482, 2.5)
+visible = false
+transparency = 0.85
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_lxc1n")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_d2lwa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.207922, 0.9632, 0.170336, 0.0102738, -0.176283, 0.984286, 0.978091, -0.202905, -0.0465488, 0, 5.0337, 0)
+light_color = Color(1, 1, 0.941176, 1)
+shadow_enabled = true
+
+[node name="Cockpit" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="BorderV" type="TextureRect" parent="Cockpit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ywics")
+
+[node name="BorderH" type="TextureRect" parent="Cockpit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_mhaba")
+
+[node name="GameStatus" type="TextEdit" parent="Cockpit"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -34.0
+offset_right = 574.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+tooltip_text = "Game Info"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="Interact" type="Button" parent="Cockpit" node_paths=PackedStringArray("game", "prompt_box")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -40.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "Wait for your turn"
+disabled = true
+text = "SEND"
+script = ExtResource("9_f0mxn")
+game = NodePath("../..")
+prompt_box = NodePath("../TextPad")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Cockpit/Interact"]
+
+[node name="TextPad" type="TextEdit" parent="Cockpit"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 578.0
+offset_top = 4.0
+offset_right = -82.0
+offset_bottom = -4.0
+grow_horizontal = 0
+grow_vertical = 0
+placeholder_text = "Message Neighbor"
+wrap_mode = 1
+
+[node name="Control" type="Control" parent="Cockpit"]
+layout_mode = 1
+anchor_right = 0.5
+offset_right = -2.0
+offset_bottom = 124.0
+mouse_filter = 1
+
+[node name="Action0" type="Button" parent="Cockpit/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -120.0
+offset_right = 126.0
+offset_bottom = -2.0
+
+[node name="LabelIcon" type="Label" parent="Cockpit/Control/Action0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -46.0
+offset_right = 27.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "×"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Cockpit/Control/Action0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 1.0
+offset_right = 39.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "End Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="Cockpit/Control/Action0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = 28.0
+offset_right = 39.758
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Action1" type="Button" parent="Cockpit/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 184.0
+offset_top = -120.0
+offset_right = 304.0
+offset_bottom = -2.0
+disabled = true
+
+[node name="LabelIcon" type="Label" parent="Cockpit/Control/Action1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -39.0
+offset_right = 27.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "^"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Cockpit/Control/Action1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 1.0
+offset_right = 39.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="Cockpit/Control/Action1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = 28.0
+offset_right = 39.758
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Action2" type="Button" parent="Cockpit/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 309.0
+offset_top = -120.0
+offset_right = 429.0
+offset_bottom = -2.0
+disabled = true
+
+[node name="LabelIcon" type="Label" parent="Cockpit/Control/Action2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -46.0
+offset_right = 27.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "<>"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Cockpit/Control/Action2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 1.0
+offset_right = 39.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Convert"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="Cockpit/Control/Action2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = 28.0
+offset_right = 39.758
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Action3" type="Button" parent="Cockpit/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 434.0
+offset_top = -120.0
+offset_right = 554.0
+offset_bottom = -2.0
+disabled = true
+
+[node name="LabelIcon" type="Label" parent="Cockpit/Control/Action3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -47.0
+offset_right = 27.5
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Cockpit/Control/Action3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = 1.0
+offset_right = 39.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Repair"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="Cockpit/Control/Action3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = 28.0
+offset_right = 39.758
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnIndication" type="Label" parent="Cockpit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -31.0
+offset_top = 9.0
+offset_right = -2.0
+offset_bottom = 45.0
+grow_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TurnLabel" type="Label" parent="Cockpit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -75.0
+offset_top = 7.0
+offset_right = -32.0
+offset_bottom = 47.0
+grow_horizontal = 0
+text = "TURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Life" type="Label" parent="Cockpit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = 47.0
+offset_right = -3.0
+offset_bottom = 83.0
+grow_horizontal = 0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Life Label" type="Label" parent="Cockpit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_top = 46.0
+offset_right = -22.0
+offset_bottom = 86.0
+grow_horizontal = 0
+text = "♥"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P0UI" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 240)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="BorderV" type="TextureRect" parent="P0UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = SubResource("GradientTexture2D_oecd5")
+
+[node name="BorderH" type="TextureRect" parent="P0UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_e2gdl")
+
+[node name="Head" type="Label" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 38.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "PLAYER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 41.0
+offset_right = 62.0
+offset_bottom = 71.0
+grow_horizontal = 2
+tooltip_text = "Balance in treasury"
+mouse_filter = 0
+text = "null"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MoneySym" type="Label" parent="P0UI/Money"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -2.0
+offset_right = 30.0
+offset_bottom = 30.0
+tooltip_text = "Balance in treasury"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 24
+text = "$	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaxAcc" type="Label" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 71.0
+offset_right = 60.0
+offset_bottom = 101.0
+grow_horizontal = 2
+tooltip_text = "Tax Collection this turn"
+mouse_filter = 0
+text = "null"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TaxAccSym" type="Label" parent="P0UI/TaxAcc"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1.0
+offset_right = 28.0
+offset_bottom = 30.0
+tooltip_text = "Tax Collection this turn"
+mouse_filter = 1
+text = "/T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatioLabel" type="Label" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 110.0
+offset_right = 92.0
+offset_bottom = 140.0
+grow_horizontal = 2
+tooltip_text = "Tax Collection this turn"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 20
+text = "SHARE TRIBUTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ratio" type="HSlider" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 142.0
+offset_right = 92.0
+offset_bottom = 172.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+tick_count = 5
+ticks_on_borders = true
+
+[node name="DisplayValue" type="Label" parent="P0UI/Ratio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "0.5	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatioKept" type="Label" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 200.0
+offset_right = -8.0
+offset_bottom = 230.0
+grow_horizontal = 2
+text = "null	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatioGiven" type="Label" parent="P0UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 8.0
+offset_top = 200.0
+offset_right = 92.0
+offset_bottom = 230.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.89931, 0.62982, 0.779714, 1)
+text = "null"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P1UI" type="Control" parent="."]
+custom_minimum_size = Vector2(200, 240)
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+mouse_filter = 1
+
+[node name="BorderV" type="TextureRect" parent="P1UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_cutte")
+
+[node name="BorderH" type="TextureRect" parent="P1UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_v4c8v")
+flip_h = true
+
+[node name="Head" type="Label" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 8.0
+offset_right = 92.0
+offset_bottom = 38.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 25
+text = "NEIGHBOR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money" type="Label" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.0
+offset_top = 41.0
+offset_right = 89.0
+offset_bottom = 71.0
+grow_horizontal = 2
+tooltip_text = "Balance in treasury"
+mouse_filter = 0
+text = "null"
+vertical_alignment = 1
+
+[node name="MoneySym" type="Label" parent="P1UI/Money"]
+layout_mode = 1
+offset_left = -31.0
+offset_right = 1.0
+offset_bottom = 30.0
+tooltip_text = "Balance in treasury"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 24
+text = "$	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaxAcc" type="Label" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 71.0
+offset_right = 88.0
+offset_bottom = 101.0
+grow_horizontal = 2
+tooltip_text = "Tax Collection this turn"
+mouse_filter = 0
+text = "null"
+vertical_alignment = 1
+
+[node name="TaxAccSym" type="Label" parent="P1UI/TaxAcc"]
+layout_mode = 1
+offset_left = -28.0
+offset_right = 1.0
+offset_bottom = 30.0
+tooltip_text = "Tax Collection this turn"
+mouse_filter = 1
+text = "T\\"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatioLabel" type="Label" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 110.0
+offset_right = 92.0
+offset_bottom = 140.0
+grow_horizontal = 2
+tooltip_text = "Tax Collection this turn"
+mouse_filter = 0
+theme_override_font_sizes/font_size = 20
+text = "SHARE TRIBUTE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ratio" type="HSlider" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 142.0
+offset_right = 92.0
+offset_bottom = 172.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+editable = false
+tick_count = 5
+ticks_on_borders = true
+
+[node name="DisplayValue" type="Label" parent="P1UI/Ratio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 14
+text = "0.5	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatioGiven" type="Label" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.0
+offset_top = 200.0
+offset_right = -8.0
+offset_bottom = 230.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.586779, 0.804286, 0.970516, 1)
+text = "null	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatioKept" type="Label" parent="P1UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 8.0
+offset_top = 200.0
+offset_right = 92.0
+offset_bottom = 230.0
+grow_horizontal = 2
+text = "null"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Helper" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.0
+offset_top = -274.0
+offset_right = 311.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BorderV" type="TextureRect" parent="Helper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ywics")
+
+[node name="BorderH" type="TextureRect" parent="Helper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_foaeq")
+
+[node name="Label" type="Label" parent="Helper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.0
+offset_top = -191.5
+offset_right = 179.0
+offset_bottom = -162.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.676834, 1, 0.729768, 1)
+theme_override_font_sizes/font_size = 26
+text = "NASH NEGOTIATE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="TextEdit" parent="Helper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = -157.5
+offset_right = 306.0
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Welcome
+
+You are stranded in this small region of the planet headed towards an asteroid cloud along with your neighbor.
+
+You can Build and convert houses, but only sustainable if you can both cooperate. You get Higher income if the your house is not in your land.
+
+Survive 12 rounds to WIN together
+Lose 12 Houses to lose together
+
+Earthquakes and meteor strike makes you repair your assets.
+
+Have fun"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+wrap_mode = 1
+
+[node name="HelperButton" type="Button" parent="Helper"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 143.5
+offset_right = 60.0
+offset_bottom = 182.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "HIDE"
+
+[node name="ContinueButton" type="Button" parent="Helper"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 132.0
+offset_top = 143.5
+offset_right = 304.0
+offset_bottom = 182.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Play out till the end of time"
+text = "CONTINUE GAME"
+
+[connection signal="input_event" from="Floor/Area3D" to="." method="_on_area_3d_input_event"]
+[connection signal="pressed" from="Cockpit/Interact" to="Cockpit/Interact" method="_on_pressed"]
+[connection signal="request_completed" from="Cockpit/Interact/HTTPRequest" to="Cockpit/Interact" method="_on_http_request_request_completed"]
+[connection signal="pressed" from="Cockpit/Control/Action0" to="." method="_on_action_0_pressed"]
+[connection signal="pressed" from="Cockpit/Control/Action1" to="." method="_on_action_1_pressed"]
+[connection signal="pressed" from="Cockpit/Control/Action2" to="." method="_on_action_2_pressed"]
+[connection signal="pressed" from="Cockpit/Control/Action3" to="." method="_on_action_3_pressed"]
+[connection signal="value_changed" from="P0UI/Ratio" to="." method="_on_p0_ratio_value_changed"]
+[connection signal="value_changed" from="P1UI/Ratio" to="." method="_on_p1_ratio_value_changed"]
+[connection signal="pressed" from="Helper/HelperButton" to="." method="_on_helper_button_pressed"]
+[connection signal="pressed" from="Helper/ContinueButton" to="." method="_on_continue_button_pressed"]

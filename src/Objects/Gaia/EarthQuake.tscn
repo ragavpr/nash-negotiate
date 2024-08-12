@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkg1ifvqgfxk7"]
+
+[ext_resource type="Shader" uid="uid://dvxdp2rm7qqum" path="res://src/Shaders/rough_noise_bump.tres" id="1_nyxob"]
+[ext_resource type="Script" path="res://src/Objects/Gaia/SelfDelete.gd" id="1_xnkdw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8d0i4"]
+render_priority = 0
+shader = ExtResource("1_nyxob")
+shader_parameter/ColorParameter = Color(0.391403, 0.295754, 7.21961e-07, 1)
+shader_parameter/FloatParameter = 1.42
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wcip0"]
+material = SubResource("ShaderMaterial_8d0i4")
+
+[sub_resource type="Curve" id="Curve_m7r6o"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.152406, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="EarthQuake" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5)
+script = ExtResource("1_xnkdw")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+cast_shadow = 0
+emitting = false
+amount = 35
+lifetime = 3.0
+one_shot = true
+mesh = SubResource("PlaneMesh_wcip0")
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 3)
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 3.0
+damping_min = 0.5
+damping_max = 0.5
+angle_min = -1.0
+angle_max = 1.0
+scale_amount_min = 0.2
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_m7r6o")
+
+[connection signal="finished" from="CPUParticles3D" to="." method="_on_cpu_particles_3d_finished"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjkomxbtp8jir"]
+
+[ext_resource type="Script" path="res://src/Game/EventManager.gd" id="1_ers75"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_ers75")
+
+[node name="EventTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="EventTimer" to="." method="_on_event_timer_timeout"]

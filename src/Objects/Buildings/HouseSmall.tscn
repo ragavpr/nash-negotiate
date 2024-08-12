@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://xmlb3rg07xdb"]
+
+[ext_resource type="Script" path="res://src/Objects/Buildings/HouseSmall.gd" id="1_4xjna"]
+[ext_resource type="PackedScene" uid="uid://q4324jot61qk" path="res://Assets/Blender/house_small.blend" id="2_mxge3"]
+[ext_resource type="Material" uid="uid://cggdvoi06vd4l" path="res://src/Materials/HouseRoofB.tres" id="3_lwkb4"]
+[ext_resource type="Material" uid="uid://cxh7k5gafbile" path="res://src/Materials/house_body.tres" id="3_ns81r"]
+
+[sub_resource type="Animation" id="Animation_5rhws"]
+resource_name = "anim_trans_in"
+step = 0.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("./house_small")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.5, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uh4ce"]
+_data = {
+"anim_trans_in": SubResource("Animation_5rhws")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1ys5p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5evyv"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[node name="HouseSmall" type="Node3D"]
+script = ExtResource("1_4xjna")
+
+[node name="house_small" parent="." instance=ExtResource("2_mxge3")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="Plane" parent="house_small" index="0"]
+surface_material_override/0 = ExtResource("3_ns81r")
+surface_material_override/1 = ExtResource("3_lwkb4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_uh4ce")
+}
+
+[node name="Health" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0421696, -0.5373, 0, 0.026865, 0.843391, 0, 0, 0, 0.4, 0, 0.837541, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_1ys5p")
+skeleton = NodePath("../house_small")
+surface_material_override/0 = SubResource("StandardMaterial3D_5evyv")
+
+[editable path="house_small"]

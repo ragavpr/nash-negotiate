@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://iybu7vftfl5e"]
+
+[ext_resource type="Shader" uid="uid://dbb0ih048p2eb" path="res://src/Shaders/house_roof.tres" id="1_gjaqy"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_gjaqy")
+shader_parameter/ColorParameter = Color(0.759821, 0.274749, 0.561887, 1)
